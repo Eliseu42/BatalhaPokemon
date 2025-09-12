@@ -1,4 +1,4 @@
-package com.pokebattle.exception;
+package com.batalhapokemon.exception;
 
 public class PokemonException extends RuntimeException {
     public PokemonException(String message) {

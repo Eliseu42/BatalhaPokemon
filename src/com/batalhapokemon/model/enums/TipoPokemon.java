@@ -1,4 +1,4 @@
-package com.pokebattle.enums;
+package com.batalhapokemon.model.enums;
 
 public enum TipoPokemon {
 

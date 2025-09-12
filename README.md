@@ -432,7 +432,7 @@ public class ExemploBatalha {
 javac -cp . src/com/pokebattle/Main.java
 
 # Executar
-java -cp src com.pokebattle.Main
+java -cp src com.batalhapokemon.Main
 ```
 
 ## 🚀 Funcionalidades Futuras

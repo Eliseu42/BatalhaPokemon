@@ -1,4 +1,4 @@
-package com.pokebattle.exception;
+package com.batalhapokemon.exception;
 
 public class PokemonIndisponivelException extends PokemonException {
     public PokemonIndisponivelException(String message) {
