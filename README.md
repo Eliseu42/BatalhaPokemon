@@ -1,4 +1,4 @@
-# 🎮 PokeBattle - Sistema de Batalha Pokémon
+# 🎮 Sistema de Batalha Pokémon
 
 Um simulador de batalhas Pokémon desenvolvido em Java, implementando mecânicas clássicas do jogo com orientação a objetos e padrões de design.
 
