@@ -104,6 +104,21 @@ public abstract class Pokemon {
     }
 
     public void aplicarStatus(StatusPokemon novoStatus) {
+        if (novoStatus == null) {
+            throw new PokemonException("O novo status não pode ser nulo.");
+        }
 
+        if (status == StatusPokemon.DESMAIADO) {
+            throw new PokemonException("O Pokémon está desmaiado e não pode receber status");
+        }
+
+        if (novoStatus == status) {
+            return;
+        }
+        status = novoStatus;
+
+        if (status == StatusPokemon.DESMAIADO) {
+            hp = 0.0;
+        }
     }
 }
