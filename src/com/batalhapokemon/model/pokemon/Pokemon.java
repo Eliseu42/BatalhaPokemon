@@ -70,6 +70,18 @@ public abstract class Pokemon {
     }
 
     public void curar(double quantidade) {
+        if (quantidade < 0) {
+            throw new PokemonException("A quantidade deve ser maior que zero.");
+        }
+
+        if (status == StatusPokemon.DESMAIADO) {
+            return;
+        }
+
+        hp += quantidade;
+        if (hp > hpMaximo) {
+            hp = hpMaximo;
+        }
     }
 
     public boolean estaDesmaiado() {
