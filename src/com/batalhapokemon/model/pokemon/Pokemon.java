@@ -19,18 +19,18 @@ public abstract class Pokemon {
     private StatusPokemon status;
     private List<Movimento> movimentos;
 
-    public Pokemon(String nome, int nivel, TipoPokemon tipo) {
+    public Pokemon(String nome, int nivel, TipoPokemon tipo, double hp, double ataque, double defesa, double velocidade) {
         this.nome = nome;
         this.nivel = nivel;
         this.tipo = tipo;
+        this.hp = hp;
+        this.ataque = ataque;
+        this.defesa = defesa;
+        this.velocidade = velocidade;
     }
 
-    public double getAtaque() {
-        return ataque;
-    }
-
-    public double getDefesa() {
-        return defesa;
+    public List<Movimento> getMovimentos() {
+        return movimentos;
     }
 
     public String getNome() {
@@ -47,6 +47,18 @@ public abstract class Pokemon {
 
     public TipoPokemon getTipo() {
         return tipo;
+    }
+
+    public double getAtaque() {
+        return ataque;
+    }
+
+    public double getDefesa() {
+        return defesa;
+    }
+
+    public double getVelocidade() {
+        return velocidade;
     }
 
     public void receberDano(double dano) {
@@ -89,14 +101,6 @@ public abstract class Pokemon {
             return true;
         }
         return false;
-    }
-
-    public void adicionarMovimento (Movimento movimento) {
-
-    }
-
-    public List<Movimento> getMovimentosDisponiveis() {
-        return null;
     }
 
     public void aplicarStatus(StatusPokemon novoStatus) {
