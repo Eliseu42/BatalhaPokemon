@@ -89,8 +89,6 @@ FUGIR
 
 class Pokemon {
 
-<<abstract>>
-
 -String nome
 
 -int nivel
@@ -112,8 +110,6 @@ class Pokemon {
 -List~Movimento~ movimentos
 
 +Pokemon(String nome, int nivel, TipoPokemon tipo)
-
-+evoluir()* void
 
 +receberDano(double dano) void
 
@@ -173,29 +169,14 @@ class Charmander {
 
 +Charmander(int nivel)
 
-+evoluir() void
-
 -inicializarMovimentos() void
 
 }
 
 
-class Charmeleon {
+class Arcanine {
 
-+Charmeleon(int nivel)
-
-+evoluir() void
-
--inicializarMovimentos() void
-
-}
-
-
-class Charizard {
-
-+Charizard(int nivel)
-
-+evoluir() void
++Arcanine(int nivel)
 
 -inicializarMovimentos() void
 
@@ -206,29 +187,14 @@ class Squirtle {
 
 +Squirtle(int nivel)
 
-+evoluir() void
-
 -inicializarMovimentos() void
 
 }
 
 
-class Wartortle {
+class Gyarados {
 
-+Wartortle(int nivel)
-
-+evoluir() void
-
--inicializarMovimentos() void
-
-}
-
-
-class Blastoise {
-
-+Blastoise(int nivel)
-
-+evoluir() void
++Gyarados(int nivel)
 
 -inicializarMovimentos() void
 
@@ -239,7 +205,14 @@ class Bulbasaur {
 
 +Bulbasaur(int nivel)
 
-+evoluir() void
+-inicializarMovimentos() void
+
+}
+
+
+class Vileplume {
+
++Vileplume(int nivel)
 
 -inicializarMovimentos() void
 
@@ -250,7 +223,50 @@ class Pikachu {
 
 +Pikachu(int nivel)
 
-+evoluir() void
+-inicializarMovimentos() void
+
+}
+
+
+class Magnezone {
+
++Magnezone(int nivel)
+
+-inicializarMovimentos() void
+
+}
+
+
+class Pidgey {
+
++Pidgey(int nivel)
+
+-inicializarMovimentos() void
+
+}
+
+
+class Fearow {
+
++Fearow(int nivel)
+
+-inicializarMovimentos() void
+
+}
+
+
+class Rattata {
+
++Rattata(int nivel)
+
+-inicializarMovimentos() void
+
+}
+
+
+class Snorlax {
+
++Snorlax(int nivel)
 
 -inicializarMovimentos() void
 
@@ -482,19 +498,27 @@ Pokemon --> "1" StatusPokemon : status atual
 
 Charmander --|> Pokemon : extends
 
-Charmeleon --|> Pokemon : extends
-
-Charizard --|> Pokemon : extends
+Arcanine --|> Pokemon : extends
 
 Squirtle --|> Pokemon : extends
 
-Wartortle --|> Pokemon : extends
-
-Blastoise --|> Pokemon : extends
+Gyarados --|> Pokemon : extends
 
 Bulbasaur --|> Pokemon : extends
 
+Vileplume --|> Pokemon : extends
+
 Pikachu --|> Pokemon : extends
+
+Magnezone --|> Pokemon : extends
+
+Pidgey --|> Pokemon : extends
+
+Fearow --|> Pokemon : extends
+
+Rattata --|> Pokemon : extends
+
+Snorlax --|> Pokemon : extends
 
 Treinador "1" *-- "1..6" Pokemon : possui equipe
 
@@ -536,9 +560,8 @@ CalculadoraDano ..> Movimento : usa
 
 Batalha ..> AcaoBatalha : processa
 
-Batalha ..> PokemonException : throws 
+Batalha ..> PokemonException : throws
 ```
-
 ## 🏗️ Arquitetura
 
 O projeto segue princípios de POO com uma arquitetura bem estruturada baseada no diagrama UML acima:
