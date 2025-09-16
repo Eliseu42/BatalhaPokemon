@@ -85,6 +85,9 @@ public abstract class Pokemon {
     }
 
     public boolean estaDesmaiado() {
+        if (status == StatusPokemon.DESMAIADO) {
+            return true;
+        }
         return false;
     }
 
