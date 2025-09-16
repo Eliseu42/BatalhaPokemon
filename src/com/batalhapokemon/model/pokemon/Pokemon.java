@@ -1,5 +1,6 @@
 package com.batalhapokemon.model.pokemon;
 
+import com.batalhapokemon.exception.PokemonException;
 import com.batalhapokemon.model.enums.StatusPokemon;
 import com.batalhapokemon.model.enums.TipoPokemon;
 
@@ -24,6 +25,14 @@ public abstract class Pokemon {
         this.tipo = tipo;
     }
 
+    public double getAtaque() {
+        return ataque;
+    }
+
+    public double getDefesa() {
+        return defesa;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -40,12 +49,24 @@ public abstract class Pokemon {
         return tipo;
     }
 
-    public void evoluir() {
-
-    }
-
     public void receberDano(double dano) {
+        if (dano < 0) {
+            throw new PokemonException("O dano deve ser maior que zero.");
+        }
 
+        if (status == StatusPokemon.DESMAIADO) {
+            return;
+        }
+
+        hp -= dano;
+
+        if (hp < 0) {
+            hp = 0;
+        }
+
+        if (Math.abs(hp) < 0.0001) {
+            status = StatusPokemon.DESMAIADO;
+        }
     }
 
     public void curar(double quantidade) {
