@@ -20,547 +20,295 @@ classDiagram
 %% Enums
 
 class TipoPokemon {
-
-<<enumeration>>
-
-FOGO
-
-AGUA
-
-PLANTA
-
-ELETRICO
-
-VOADOR
-
-NORMAL
-
-calcularEfetividade(TipoPokemon defensor) double
-
+    <<enumeration>>
+    FOGO
+    AGUA
+    PLANTA
+    ELETRICO
+    VOADOR
+    NORMAL
 }
 
 
 class StatusBatalha {
-
-<<enumeration>>
-
-ATIVO
-
-PAUSADO
-
-FINALIZADO
-
+    <<enumeration>>
+    EM_ANDAMENTO
+    PAUSADO
+    FINALIZADO
 }
 
 
 class StatusPokemon {
-
-<<enumeration>>
-
-SAUDAVEL
-
-ENVENENADO
-
-PARALISADO
-
-QUEIMADO
-
-DESMAIADO
-
+    <<enumeration>>
+    SAUDAVEL
+    ENVENENADO
+    PARALISADO
+    QUEIMADO
+    DESMAIADO
 }
 
-
-class TipoAcao {
-
-<<enumeration>>
-
-ATACAR
-
-TROCAR_POKEMON
-
-USAR_ITEM
-
-FUGIR
-
-}
-
-
-%% Classes Base
+%% Clases Base
 
 class Pokemon {
-
--String nome
-
--int nivel
-
--double hp
-
--double hpMaximo
-
--double ataque
-
--double defesa
-
--double velocidade
-
--TipoPokemon tipo
-
--StatusPokemon status
-
--List~Movimento~ movimentos
-
-+Pokemon(String nome, int nivel, TipoPokemon tipo)
-
-+receberDano(double dano) void
-
-+curar(double quantidade) void
-
-+estaDesmaiado() boolean
-
-+adicionarMovimento(Movimento movimento) void
-
-+getMovimentosDisponiveis() List~Movimento~
-
-+aplicarStatus(StatusPokemon novoStatus) void
-
-+getNome() String
-
-+getNivel() int
-
-+getHp() double
-
-+getTipo() TipoPokemon
-
+    -String nome
+    -int nivel
+    -double hp
+    -double hpMaximo
+    -double ataque
+    -double defesa
+    -double velocidade
+    -TipoPokemon tipo
+    -StatusPokemon status
+    -List~Movimento~ movimentos
+    +Pokemon(String nome, int nivel, TipoPokemon tipo, double hp, double ataque, double defesa, double velocidade)
+    +receberDano(double dano) void
+    +curar(double quantidade) void
+    +estaDesmaiado() boolean
+    +getMovimentos() List~Movimento~
+    +aplicarStatus(StatusPokemon novoStatus) void
+    +getNome() String
+    +getNivel() int
+    +getHp() double
+    +getTipo() TipoPokemon
+    +getAtaque() double
+    +getDefesa() double
+    +getVelocidade() double
 }
 
 
 class Movimento {
-
--String nome
-
--TipoPokemon tipo
-
--double poder
-
--int precisao
-
--int pp
-
--int ppMaximo
-
--boolean isEspecial
-
-+Movimento(String nome, TipoPokemon tipo, double poder, int precisao, int pp)
-
-+calcularDano(Pokemon atacante, Pokemon defensor) double
-
-+podeSerUsado() boolean
-
-+usar() void
-
-+restaurarPP() void
-
+    -String nome
+    -TipoPokemon tipo
+    -double poder
+    -int precisao
+    -int pp
+    -int ppMaximo
+    -boolean isEspecial
+    +Movimento(String nome, TipoPokemon tipo, double poder, int precisao, int pp)
+    +podeSerUsado() boolean
+    +usar() void
+    +restaurarPP() void
+    +getNome() String
+    +getTipo() TipoPokemon
+    +getPoder() double
+    +getPrecisao() int
 }
 
 
 %% Pokémons Concretos
-
+%% --- TIPO FOGO ---
 class Charmander {
-
-+Charmander(int nivel)
-
--inicializarMovimentos() void
-
+    +Charmander(int nivel)
 }
-
-
 class Arcanine {
-
-+Arcanine(int nivel)
-
--inicializarMovimentos() void
-
+    +Arcanine(int nivel)
 }
 
-
+%% --- TIPO AGUA ---
 class Squirtle {
-
-+Squirtle(int nivel)
-
--inicializarMovimentos() void
-
+    +Squirtle(int nivel)
 }
-
-
 class Gyarados {
-
-+Gyarados(int nivel)
-
--inicializarMovimentos() void
-
+    +Gyarados(int nivel)
 }
 
-
+%% --- TIPO PLANTA ---
 class Bulbasaur {
-
-+Bulbasaur(int nivel)
-
--inicializarMovimentos() void
-
+    +Bulbasaur(int nivel)
 }
-
-
 class Vileplume {
-
-+Vileplume(int nivel)
-
--inicializarMovimentos() void
-
+    +Vileplume(int nivel)
 }
 
-
+%% --- TIPO ELETRICO ---
 class Pikachu {
-
-+Pikachu(int nivel)
-
--inicializarMovimentos() void
-
+    +Pikachu(int nivel)
 }
-
-
 class Magnezone {
-
-+Magnezone(int nivel)
-
--inicializarMovimentos() void
-
+    +Magnezone(int nivel)
 }
 
-
+%% --- TIPO VOADOR ---
 class Pidgey {
-
-+Pidgey(int nivel)
-
--inicializarMovimentos() void
-
+    +Pidgey(int nivel)
 }
-
-
 class Fearow {
-
-+Fearow(int nivel)
-
--inicializarMovimentos() void
-
+    +Fearow(int nivel)
 }
 
-
+%% --- TIPO NORMAL ---
 class Rattata {
-
-+Rattata(int nivel)
-
--inicializarMovimentos() void
-
+    +Rattata(int nivel)
 }
-
-
 class Snorlax {
-
-+Snorlax(int nivel)
-
--inicializarMovimentos() void
-
+    +Snorlax(int nivel)
 }
 
 
-%% Classes de Treinador e Batalha
+%% Clases de Treinador e Batalha
 
 class Treinador {
-
--String nome
-
--List~Pokemon~ equipe
-
--Pokemon pokemonAtivo
-
--int vitorias
-
--int derrotas
-
-+Treinador(String nome)
-
-+adicionarPokemon(Pokemon pokemon) void
-
-+trocarPokemon(int indice) void
-
-+getPokemonAtivo() Pokemon
-
-+temPokemonDisponivel() boolean
-
-+getPokemonsDisponiveis() List~Pokemon~
-
-+registrarVitoria() void
-
-+registrarDerrota() void
-
+    -String nome
+    -List~Pokemon~ equipe
+    -Pokemon pokemonAtivo
+    +Treinador(String nome)
+    +adicionarPokemon(Pokemon pokemon) void
+    +trocarPokemonAtivo(int indiceEquipe) void
+    +getPokemonAtivo() Pokemon
+    +temPokemonDisponivel() boolean
+    +getEquipe() List~Pokemon~
 }
 
 
 class Batalha {
-
--Treinador treinador1
-
--Treinador treinador2
-
--Treinador vencedor
-
--StatusBatalha status
-
--int turnoAtual
-
--Random random
-
-+Batalha(Treinador t1, Treinador t2)
-
-+iniciar() void
-
-+executarTurno(AcaoBatalha acao1, AcaoBatalha acao2) void
-
-+isTerminada() boolean
-
-+getVencedor() Treinador
-
--processarAtaque(Treinador atacante, Treinador defensor, Movimento movimento) void
-
--determinarOrdemTurno(AcaoBatalha acao1, AcaoBatalha acao2) int
-
--verificarFimDaBatalha() void
-
+    -Treinador treinador1
+    -Treinador treinador2
+    -StatusBatalha status
+    -int turnoAtual
+    +Batalha(Treinador t1, Treinador t2)
+    +iniciar() void
+    +executarTurno(AcaoBatalha acao1, AcaoBatalha acao2) void
+    +isTerminada() boolean
+    +getVencedor() Treinador
+    -determinarOrdemDeAcao(AcaoBatalha acao1, AcaoBatalha acao2) List~AcaoBatalha~
+    -verificarFimDaBatalha() void
 }
 
 
-%% Classes para Ações de Batalha
+%% Classes para Ações de Batalha (Command Pattern)
 
 class AcaoBatalha {
-
-<<abstract>>
-
-#TipoAcao tipo
-
-+executar(Treinador treinador, Batalha batalha)* void
-
+    <<abstract>>
+    #Treinador autor
+    +AcaoBatalha(Treinador autor)
+    +executar(Batalha batalha)* void
 }
 
 
 class AtacarAcao {
-
--Movimento movimento
-
-+AtacarAcao(Movimento movimento)
-
-+executar(Treinador treinador, Batalha batalha) void
-
+    -Movimento movimento
+    +AtacarAcao(Treinador autor, Movimento movimento)
+    +executar(Batalha batalha) void
 }
 
 
 class TrocarPokemonAcao {
-
--int indicePokemon
-
-+TrocarPokemonAcao(int indice)
-
-+executar(Treinador treinador, Batalha batalha) void
-
+    -int indicePokemonAlvo
+    +TrocarPokemonAcao(Treinador autor, int indice)
+    +executar(Batalha batalha) void
 }
 
 
 class UsarItemAcao {
+    -Item item
+    -int indicePokemonAlvo
+    +UsarItemAcao(Treinador autor, Item item, int indicePokemonAlvo)
+    +executar(Batalha batalha) void
+}
 
--Item item
-
-+UsarItemAcao(Item item)
-
-+executar(Treinador treinador, Batalha batalha) void
-
+class FugirAcao {
+    +FugirAcao(Treinador autor)
+    +executar(Batalha batalha) void
 }
 
 
 %% Sistema de Itens
 
 class Item {
-
-<<abstract>>
-
-#String nome
-
-#String descricao
-
-+Item(String nome, String descricao)
-
-+usar(Pokemon pokemon)* void
-
+    <<abstract>>
+    #String nome
+    #String descricao
+    +usar(Pokemon alvo)* void
 }
 
 
 class Pocao {
-
--int quantidadeCura
-
-+Pocao()
-
-+usar(Pokemon pokemon) void
-
+    -int quantidadeCura
+    +usar(Pokemon alvo) void
 }
 
 
 class Antidoto {
-
-+Antidoto()
-
-+usar(Pokemon pokemon) void
-
+    +usar(Pokemon alvo) void
 }
 
 
 %% Exceções Customizadas
 
+class JogoException {
+    <<exception>>
+}
+
 class PokemonException {
-
-<<exception>>
-
-+PokemonException(String message)
-
+    <<exception>>
 }
-
-
-class PokemonIndisponivelException {
-
-<<exception>>
-
-+PokemonIndisponivelException(String message)
-
-}
-
 
 class BatalhaException {
-
-<<exception>>
-
-+BatalhaException(String message)
-
-}
-
-
-class MovimentoIndisponivelException {
-
-<<exception>>
-
-+MovimentoIndisponivelException(String message)
-
+    <<exception>>
 }
 
 
 %% Factory Pattern
 
 class PokemonFactory {
-
-<<utility>>
-
-+criarPokemon(String especie, int nivel)$ Pokemon
-
-+getMovimentosPorTipo(TipoPokemon tipo)$ List~Movimento~
-
+    <<utility>>
+    +criarPokemon(String especie, int nivel)$ Pokemon
 }
 
 
 %% Utilitários
 
 class CalculadoraDano {
-
-<<utility>>
-
-+calcularDano(Pokemon atacante, Pokemon defensor, Movimento movimento)$ double
-
-+aplicarEfetividade(double dano, TipoPokemon tipoAtaque, TipoPokemon tipoDefesa)$ double
-
-+isCritico()$ boolean
-
+    <<utility>>
+    +calcularDano(Pokemon atacante, Pokemon defensor, Movimento movimento)$ double
 }
 
 
 %% Relacionamentos
 
-Pokemon "1" *-- "4..6" Movimento : possui
+%% --- Herencia ---
+AcaoBatalha <|-- AtacarAcao
+AcaoBatalha <|-- TrocarPokemonAcao
+AcaoBatalha <|-- UsarItemAcao
+AcaoBatalha <|-- FugirAcao
+Item <|-- Pocao
+Item <|-- Antidoto
+JogoException <|-- PokemonException
+JogoException <|-- BatalhaException
 
-Pokemon --> "1" TipoPokemon : tem
+%% Herencia de Pokémons
+Pokemon <|-- Charmander
+Pokemon <|-- Arcanine
+Pokemon <|-- Squirtle
+Pokemon <|-- Gyarados
+Pokemon <|-- Bulbasaur
+Pokemon <|-- Vileplume
+Pokemon <|-- Pikachu
+Pokemon <|-- Magnezone
+Pokemon <|-- Pidgey
+Pokemon <|-- Fearow
+Pokemon <|-- Rattata
+Pokemon <|-- Snorlax
 
-Pokemon --> "1" StatusPokemon : status atual
 
-Charmander --|> Pokemon : extends
+%% --- Composición y Agregación ---
+Treinador "1" *-- "1..6" Pokemon : possuiEquipe
+Batalha "1" o-- "2" Treinador : participantes
+Pokemon "1" o-- "1..4" Movimento : conhece
 
-Arcanine --|> Pokemon : extends
+%% --- Asociación ---
+Treinador "1" --> "0..1" Pokemon : pokemonAtivo
+Batalha "1" --> "1" StatusBatalha : temStatus
+Pokemon "1" --> "1" StatusPokemon : temStatus
+Pokemon "1" --> "1" TipoPokemon : éDoTipo
+AtacarAcao "1" --> "1" Movimento : usa
+UsarItemAcao "1" --> "1" Item : usa
 
-Squirtle --|> Pokemon : extends
-
-Gyarados --|> Pokemon : extends
-
-Bulbasaur --|> Pokemon : extends
-
-Vileplume --|> Pokemon : extends
-
-Pikachu --|> Pokemon : extends
-
-Magnezone --|> Pokemon : extends
-
-Pidgey --|> Pokemon : extends
-
-Fearow --|> Pokemon : extends
-
-Rattata --|> Pokemon : extends
-
-Snorlax --|> Pokemon : extends
-
-Treinador "1" *-- "1..6" Pokemon : possui equipe
-
-Treinador "1" --> "0..1" Pokemon : pokemon ativo
-
-Batalha "1" o-- "2" Treinador : entre treinadores
-
-Batalha --> "1" StatusBatalha : possui status
-
-AcaoBatalha <|-- AtacarAcao : extends
-
-AcaoBatalha <|-- TrocarPokemonAcao : extends
-
-AcaoBatalha <|-- UsarItemAcao : extends
-
-AcaoBatalha --> "1" TipoAcao : usa
-
-AtacarAcao --> "1" Movimento : utiliza
-
-TrocarPokemonAcao ..> Pokemon : referencia
-
-UsarItemAcao --> "1" Item : utiliza
-
-Item <|-- Pocao : extends
-
-Item <|-- Antidoto : extends
-
-PokemonException <|-- PokemonIndisponivelException : extends
-
-PokemonException <|-- MovimentoIndisponivelException : extends
-
-PokemonException <|-- BatalhaException : extends
-
-PokemonFactory ..> Pokemon : cria
-
-CalculadoraDano ..> Pokemon : calcula para
-
-CalculadoraDano ..> Movimento : usa
-
+%% --- Dependencia ---
 Batalha ..> AcaoBatalha : processa
-
-Batalha ..> PokemonException : throws
+Batalha ..> CalculadoraDano : utiliza
+AtacarAcao ..> CalculadoraDano : utiliza
+PokemonFactory ..> Pokemon : cria
 ```
 ## 🏗️ Arquitetura
 
