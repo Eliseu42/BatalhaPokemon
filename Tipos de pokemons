@@ -1,0 +1,132 @@
+import java.util.List;
+import java.util.ArrayList;
+
+public class Pokemon {
+    private String nome; "Pikachu"
+    private int nivel; "
+    private double hp;
+    private double hpMaximo;
+    private double ataque;
+    private double defesa;
+    private double velocidade;
+    private TipoPokemon tipo; "eletrico"
+    private StatusPokemon status;
+    private List<Movimento> movimentos;
+
+    public Pokemon(String nome, int nivel, TipoPokemon tipo, double hpMaximo, double ataque, double defesa, double velocidade) {
+        this.nome = nome;
+        this.nivel = nivel;
+        this.tipo = tipo;
+        this.hpMaximo = hpMaximo;
+        this.hp = hpMaximo; // Começa com HP total
+        this.ataque = ataque;
+        this.defesa = defesa;
+        this.velocidade = velocidade;
+        this.status = StatusPokemon.SAUDAVEL;
+        this.movimentos = new ArrayList<>();
+    }
+
+    // Métodos getters
+    public String getNome() {
+        return nome;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public double getHp() {
+        return hp;
+    }
+
+    public double getHpMaximo() {
+        return hpMaximo;
+    }
+
+    public double getAtaque() {
+        return ataque;
+    }
+
+    public double getDefesa() {
+        return defesa;
+    }
+
+    public double getVelocidade() {
+        return velocidade;
+    }
+
+    public TipoPokemon getTipo() {
+        return tipo;
+    }
+
+    public StatusPokemon getStatus() {
+        return status;
+    }
+
+    public List<Movimento> getMovimentos() {
+        return movimentos;
+    }
+
+    // Métodos de ação
+    public void receberDano(double dano) {
+        this.hp -= dano;
+        if (this.hp < 0) {
+            this.hp = 0;
+            this.status = StatusPokemon.DESMAIADO;
+        }
+        System.out.println(this.nome + " recebeu " + dano + " de dano. HP restante: " + this.hp);
+    }
+
+    public void curar(double quantidade) {
+        if (this.status == StatusPokemon.DESMAIADO) {
+            System.out.println(this.nome + " está desmaiado e não pode ser curado desta forma.");
+            return;
+        }
+        this.hp += quantidade;
+        if (this.hp > this.hpMaximo) {
+            this.hp = this.hpMaximo;
+        }
+        System.out.println(this.nome + " foi curado em " + quantidade + ". HP atual: " + this.hp);
+    }
+
+    public boolean estaDesmaiado() {
+        return this.status == StatusPokemon.DESMAIADO || this.hp <= 0;
+    }
+
+    public void aplicarStatus(StatusPokemon novoStatus) {
+        if (this.status == StatusPokemon.DESMAIADO) {
+            System.out.println(this.nome + " já está desmaiado.");
+            return;
+        }
+        if (novoStatus == StatusPokemon.DESMAIADO) {
+            this.hp = 0;
+        }
+        this.status = novoStatus;
+        System.out.println(this.nome + " agora está " + novoStatus.name());
+    }
+
+    // Método para adicionar movimentos (simplificado)
+    public void adicionarMovimento(Movimento movimento) {
+        if (this.movimentos.size() < 4) { // Limite de 4 movimentos
+            this.movimentos.add(movimento);
+        } else {
+            System.out.println("O Pokémon já possui o máximo de 4 movimentos.");
+        }
+    }
+
+    // Método para aprender movimentos (pode ser mais elaborado depois)
+    public void aprenderMovimento(Movimento movimento) {
+        adicionarMovimento(movimento);
+    }
+
+    @Override
+    public String toString() {
+        return "Pokemon{" +
+               "nome='" + nome + '\'' +
+               ", nivel=" + nivel +
+               ", hp=" + hp + "/" + hpMaximo +
+               ", tipo=" + tipo +
+               ", status=" + status +
+               '}';
+    }
+}
